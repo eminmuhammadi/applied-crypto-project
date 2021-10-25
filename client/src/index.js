@@ -7,10 +7,7 @@ import { Toaster } from 'react-hot-toast';
 
 // styles
 import './global.scss';
-import './tailwind.css';
-
-// Fix on production
-// import './index.css'
+import './index.css'
 
 ReactDOM.render(
   <React.StrictMode>
