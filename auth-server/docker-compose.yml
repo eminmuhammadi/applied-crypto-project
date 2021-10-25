@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+    auth_server:
+        container_name: auth_server
+        build: .
+        volumes:
+            - .:/app
+        env_file:
+            - ./.env
+        environment:
+            - PORT=65000
+            - HOSTNAME=auth_server
+            - REFRESH_PUBLIC_PEM_FILE=/app/keys/refresh/public.pem
+            - REFRESH_PRIVATE_PEM_FILE=/app/keys/refresh/private.pem
+            - ACCESS_PUBLIC_PEM_FILE=/app/keys/access/public.pem
+            - ACCESS_PRIVATE_PEM_FILE=/app/keys/access/private.pem
+            - MAILER_TEMPLATE_PATH=/app/mailer/template.html
+            
+    nginx:
+        image: nginx:alpine
+        restart: always
+        ports:
+            - "80:80"
+        volumes:
+            - ./nginx.conf:/etc/nginx/conf.d/default.conf
+        links:
+        - auth_server

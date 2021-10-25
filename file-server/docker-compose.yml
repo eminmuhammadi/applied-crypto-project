@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+    file_server:
+        container_name: file_server
+        build: .
+        volumes:
+            - .:/app
+        env_file:
+            - ./.env
+        environment:
+            - PORT=65001
+            - HOSTNAME=file_server
+            - PEM_FILE=/app/keys/public.pem
+            - BASE_PATH=/app
+            
+    nginx:
+        image: nginx:alpine
+        restart: always
+        ports:
+            - "80:80"
+        volumes:
+            - ./nginx.conf:/etc/nginx/conf.d/default.conf
+        links:
+        - file_server
