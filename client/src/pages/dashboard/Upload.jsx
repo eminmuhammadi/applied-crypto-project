@@ -13,25 +13,24 @@ import { useHistory, Link } from "react-router-dom";
 function Upload() {
   let history = useHistory();
   const [selectedFile, setSelectedFile] = useState();
-
-	const changeHandler = (event) => {
-		setSelectedFile(event.target.files[0]);
-	};
+  
+  const changeHandler = (event) => {
+     setSelectedFile(event.target.files[0]);
+  };
 
   const handleSubmission = () => {
-		const formData = new FormData();
+	const formData = new FormData();
+	  formData.append('file', selectedFile);
 
-		formData.append('file', selectedFile);
-
-		fetcher('post', '/files/upload', formData)
+   fetcher('post', '/files/upload', formData)
       .then((_res) => {
         toast.success('File uploaded successfully');
         history.push('/dashboard'); 
       })
-			.catch((error) => {
-				toast.error(error.message);
-			});
-	};
+      .catch((error) => {
+	toast.error(error.message);
+      });
+  };
 
   return(
     <div className="container">
