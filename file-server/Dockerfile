@@ -41,5 +41,5 @@ ENV TZ=Europe/Budapest
 ENV ZONEINFO=/app/config/zoneinfo.zip
 
 # Run executable
-EXPOSE 65001
+EXPOSE 5000
 CMD ["./main"]

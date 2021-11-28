@@ -16,8 +16,12 @@ import (
 // @version 1.0
 // @description File API Service.
 
-// @host 127.0.0.1:65001
+// @host storage.hiringo.tech
 // @BasePath /
+
+// @contact.name Emin Muhammadi
+// @contact.url https://github.com/softech-craftsman-webapp/file_server
+// @contact.email admin@hiringo.tech
 
 // @securityDefinitions.apiKey JWT
 // @in header

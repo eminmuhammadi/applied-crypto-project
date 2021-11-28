@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/go-playground/validator"
@@ -10,6 +11,18 @@ import (
 type CustomValidator struct {
 	Validator *validator.Validate
 }
+type fieldError struct {
+	err validator.FieldError
+}
+
+/*
+   |--------------------------------------------------------------------------
+   | ValidatorCustomErrorMessage
+   |--------------------------------------------------------------------------
+*/
+func ValidatorCustomErrorMessage(q fieldError) string {
+	return fmt.Sprintf("Validation failed on field %v", q.err.Field())
+}
 
 /*
    |--------------------------------------------------------------------------
@@ -18,8 +31,18 @@ type CustomValidator struct {
 */
 func (cv *CustomValidator) Validate(i interface{}) error {
 	if err := cv.Validator.Struct(i); err != nil {
+		customError := "Fatal Error"
+
+		if _, ok := err.(*validator.InvalidValidationError); ok {
+			customError = "Internal Server Error"
+		}
+
+		for _, err := range err.(validator.ValidationErrors) {
+			customError = ValidatorCustomErrorMessage(fieldError{err: err})
+		}
+
 		// Optionally, you could return the error to give each route more control over the status code
-		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+		return echo.NewHTTPError(http.StatusBadRequest, customError)
 	}
 	return nil
 }
