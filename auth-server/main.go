@@ -16,12 +16,8 @@ import (
 // @version 1.0
 // @description Authentication API Service.
 
-// @host auth.hiringo.tech
+// @host 127.0.0.1:65000
 // @BasePath /
-
-// @contact.name Emin Muhammadi
-// @contact.url https://github.com/softech-craftsman-webapp/auth_server
-// @contact.email admin@hiringo.tech
 
 // @securityDefinitions.apiKey JWT
 // @in header
