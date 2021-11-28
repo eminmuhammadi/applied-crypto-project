@@ -3,14 +3,10 @@
     "info": {
         "description": "Authentication API Service.",
         "title": "Authentication Server",
-        "contact": {
-            "name": "Emin Muhammadi",
-            "url": "https://github.com/softech-craftsman-webapp/auth_server",
-            "email": "admin@hiringo.tech"
-        },
+        "contact": {},
         "version": "1.0"
     },
-    "host": "auth.hiringo.tech",
+    "host": "127.0.0.1:65000",
     "basePath": "/",
     "paths": {
         "/auth/change-password/{token}": {

@@ -3,14 +3,10 @@
     "info": {
         "description": "File API Service.",
         "title": "File Server",
-        "contact": {
-            "name": "Emin Muhammadi",
-            "url": "https://github.com/softech-craftsman-webapp/file_server",
-            "email": "admin@hiringo.tech"
-        },
+        "contact": {},
         "version": "1.0"
     },
-    "host": "storage.hiringo.tech",
+    "host": "127.0.0.1:65001",
     "basePath": "/",
     "paths": {
         "/files/upload": {

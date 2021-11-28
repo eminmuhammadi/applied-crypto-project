@@ -19,12 +19,9 @@ definitions:
       success:
         type: boolean
     type: object
-host: storage.hiringo.tech
+host: 127.0.0.1:65001
 info:
-  contact:
-    email: admin@hiringo.tech
-    name: Emin Muhammadi
-    url: https://github.com/softech-craftsman-webapp/file_server
+  contact: {}
   description: File API Service.
   title: File Server
   version: "1.0"
