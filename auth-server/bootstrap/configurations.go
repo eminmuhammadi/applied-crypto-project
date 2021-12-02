@@ -6,7 +6,7 @@ import (
 	"time"
 
 	config "auth_server/config"
-	view "auth_server/view"
+	// view "auth_server/view"
 
 	"github.com/labstack/echo-contrib/prometheus"
 	"github.com/labstack/echo/v4"
@@ -24,34 +24,34 @@ func InitConfigurations(app *echo.Echo) {
 	app.HTTPErrorHandler = config.CustomHTTPErrorHandler
 
 	// Rate limit config
-	config := middleware.RateLimiterConfig{
-		Skipper: middleware.DefaultSkipper,
-		Store: middleware.NewRateLimiterMemoryStoreWithConfig(
-			middleware.RateLimiterMemoryStoreConfig{
-				Rate:      10,
-				Burst:     30,
-				ExpiresIn: 3 * time.Minute,
-			},
-		),
-		IdentifierExtractor: func(ctx echo.Context) (string, error) {
-			id := ctx.RealIP()
-			return id, nil
-		},
-		ErrorHandler: func(ctx echo.Context, err error) error {
-			return view.ApiView(http.StatusForbidden, ctx, &view.Response{
-				Success: false,
-				Message: "Forbidden",
-				Payload: nil,
-			})
-		},
-		DenyHandler: func(ctx echo.Context, identifier string, err error) error {
-			return view.ApiView(http.StatusTooManyRequests, ctx, &view.Response{
-				Success: false,
-				Message: "Too many requests",
-				Payload: nil,
-			})
-		},
-	}
+	// rateLimiterConfig := middleware.RateLimiterConfig{
+	// 	Skipper: middleware.DefaultSkipper,
+	// 	Store: middleware.NewRateLimiterMemoryStoreWithConfig(
+	// 		middleware.RateLimiterMemoryStoreConfig{
+	// 			Rate:      10,
+	// 			Burst:     30,
+	// 			ExpiresIn: 3 * time.Minute,
+	// 		},
+	// 	),
+	// 	IdentifierExtractor: func(ctx echo.Context) (string, error) {
+	// 		id := ctx.RealIP()
+	// 		return id, nil
+	// 	},
+	// 	ErrorHandler: func(ctx echo.Context, err error) error {
+	// 		return view.ApiView(http.StatusForbidden, ctx, &view.Response{
+	// 			Success: false,
+	// 			Message: "Forbidden",
+	// 			Payload: nil,
+	// 		})
+	// 	},
+	// 	DenyHandler: func(ctx echo.Context, identifier string, err error) error {
+	// 		return view.ApiView(http.StatusTooManyRequests, ctx, &view.Response{
+	// 			Success: false,
+	// 			Message: "Too many requests",
+	// 			Payload: nil,
+	// 		})
+	// 	},
+	// }
 
 	// Logger Middleware
 	app.Logger.SetLevel(log.INFO)
@@ -73,7 +73,8 @@ func InitConfigurations(app *echo.Echo) {
 	app.Use(middleware.Recover())
 
 	// Rate Limiter Middleware
-	app.Use(middleware.RateLimiterWithConfig(config))
+	// TODO: Disabled due to performance tests
+	// app.Use(middleware.RateLimiterWithConfig(rateLimiterConfig))
 
 	// Secure Headers Middleware
 	app.Use(middleware.SecureWithConfig(middleware.SecureConfig{
