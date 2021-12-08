@@ -33,10 +33,11 @@ function Main() {
               <div className="md:flex md:flex-wrap">
                 <div className="md:w-1/2 text-center md:text-left md:pt-16">
                   <h1 className="font-bold text-white text-2xl md:text-5xl leading-tight mb-4">
-                    Simple file server for everyone
+                    <br></br>
+                    Storage for everyone
                   </h1>
                   <p className="text-gray-400 md:text-xl md:pr-48 pb-5">
-                    File Server is a simple file server that allows 
+                    File Server is a simple service that allows 
                     you to save files on the server and share them 
                     with other users.
                   </p>

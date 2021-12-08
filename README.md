@@ -2,6 +2,9 @@
 
 <p align="center">RSA and ECDSA based Crypto Project (JWT RFC 7519)</p>
 
+- [Documentation](docs/paper.pdf)
+- [Presentation](docs/presentation.pdf)
+
 ## Links
 
 - [Repo](https://github.com/eminmuhammadi/applied-crypto-project "Applied Crypto Project Repo")

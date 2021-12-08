@@ -3,7 +3,7 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 module.exports = {
   mode: 'jit',
   purge: [
-    './src/**/*.{js,jsx,ts,tsx}', 
+    './src/**/*.{js,jsx,ts,tsx,module.css}', 
     './public/index.html'
   ],
   darkMode: false,
@@ -23,6 +23,6 @@ module.exports = {
     require('@tailwindcss/custom-forms'),
     require('@tailwindcss/typography'),
     require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/line-clamp')
   ],
 }
