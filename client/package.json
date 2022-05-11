@@ -18,7 +18,7 @@
     "craco-image-optimizer-plugin": "^0.0.4",
     "history": "^5.0.0",
     "js-file-download": "^0.4.12",
-    "moment": "^2.29.1",
+    "moment": "^2.29.2",
     "postcss": "^7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
